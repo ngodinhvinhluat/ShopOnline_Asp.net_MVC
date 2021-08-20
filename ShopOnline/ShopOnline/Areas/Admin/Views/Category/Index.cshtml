@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<Models.Framework.Category>
+
+<link href="~/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+<!-- Custom styles for this page -->
+<link href="~/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Bảng Category</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <p>
+                <a class="nav-link">
+                    @Html.ActionLink("Create New", "Create")
+                </a>
+            </p>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Alias</th>
+                        <th>ParentID</th>
+                        <th>CreatedDate</th>
+                        <th>Order</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Alias)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentID)
+                        </td>
+                        <td>
+                            @(item.CreatedDate.HasValue?item.CreatedDate.Value.ToString("dd/MM/yy"):"")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Order)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="~/Assets/Admin/vendor/jquery/jquery.min.js"></script>
+<script src="~/Assets/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="~/Assets/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="~/Assets/Admin/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="~/Assets/Admin/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/Assets/Admin/js/demo/datatables-demo.js"></script>
